@@ -12,7 +12,7 @@ public class BallBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        speed = new Vector3(0.5f, 0.5f, 0.5f);
+        speed = new Vector3(1.0f, 1.0f, 1.0f);
         direction = new Vector3(-1f, 0.3f, 0.2f);
     }
 	
@@ -28,12 +28,7 @@ public class BallBehavior : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        //Check if you have to be specific to an object to bounce
-        Debug.Log("called");
-
-        Vector3 bouncedVector = -2 * (Vector3.Dot(this.direction, other.contacts[0].normal)) * other.contacts[0].normal + this.direction;
-        this.direction = bouncedVector;
-
+        this.direction = -2 * (Vector3.Dot(this.direction, other.contacts[0].normal)) * other.contacts[0].normal + this.direction; ;
     }
 
 }
