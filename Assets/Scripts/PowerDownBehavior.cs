@@ -16,6 +16,8 @@ public class PowerDownBehavior : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
+        GameObject.Find("PowerDownSound").GetComponent<AudioSource>().Play();
+
         Destroy(transform.root.gameObject);
 
         GameObject ball = other.gameObject as GameObject;

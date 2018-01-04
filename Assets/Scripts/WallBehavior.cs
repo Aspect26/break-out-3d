@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockBehavior : MonoBehaviour {
+public class WallBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +14,8 @@ public class BlockBehavior : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        GameObject.Find("BreakSound").GetComponent<AudioSource>().Play();
-        Destroy(transform.root.gameObject);
+        GameObject.Find("BallHit").GetComponent<AudioSource>().Play();
     }
 }

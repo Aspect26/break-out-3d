@@ -3,3 +3,4 @@ Temp/*
 *.csproj
 *.sln
 .vs/*
+assets-list.txt*

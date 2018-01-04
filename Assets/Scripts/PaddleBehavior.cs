@@ -20,4 +20,9 @@ public class PaddleBehavior : MonoBehaviour {
 
         this.transform.SetPositionAndRotation(new Vector3(this.transform.position.x, newY, newZ), this.transform.rotation);
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject.Find("BallHit").GetComponent<AudioSource>().Play();
+    }
 }
