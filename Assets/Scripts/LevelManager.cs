@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour {
     private void setLevel(int level)
     {
         this.currentLevel = level % MAX_LEVEL;
+        Debug.Log(this.currentLevel);
         this.destroyAllBalls();
         this.spawnLevelBlocks();
     }
@@ -78,7 +79,7 @@ public class LevelManager : MonoBehaviour {
     public void startNextLevel()
     {
         Destroy(this.currentLevelBlocks);
-        this.setLevel(this.currentLevel++);
+        this.setLevel(this.currentLevel + 1);
         GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().IncreaseLevel();
     }
 	
