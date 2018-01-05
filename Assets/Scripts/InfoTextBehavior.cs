@@ -30,6 +30,13 @@ public class InfoTextBehavior : MonoBehaviour {
         this.updateText();
     }
 
+    public void ResetStats()
+    {
+        this.score = 0;
+        this.level = 1;
+        this.updateText();
+    }
+
     private void updateText()
     {
         string text = "Score: " + score + "\n" + "Lifes: 3\nLevel: " + level;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -11,8 +12,16 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
+        SceneManager.UnloadSceneAsync("Menu");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
         this.initializeLevels();
+        this.ResetGame();
+    }
+
+    public void ResetGame()
+    {
         this.setLevel(0);
+        GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().ResetStats();
     }
 
     private void initializeLevels()
@@ -26,7 +35,17 @@ public class LevelManager : MonoBehaviour {
     private void setLevel(int level)
     {
         this.currentLevel = level % MAX_LEVEL;
+        this.destroyAllBalls();
         this.spawnLevelBlocks();
+    }
+
+    private void destroyAllBalls()
+    {
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
+        foreach (GameObject ball in balls)
+        {
+            Destroy(ball);
+        }
     }
 
     private void spawnLevelBlocks()
@@ -42,6 +61,17 @@ public class LevelManager : MonoBehaviour {
         if (currentLevelBlocks.transform.Find("Blocks").transform.childCount == 1)
         {
             this.startNextLevel();
+        }
+    }
+
+    public void OnBallLost()
+    {
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
+        if (balls.Length == 1)
+        {
+            SceneManager.UnloadSceneAsync("Main");
+            SceneManager.LoadScene("Menu");
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
         }
     }
 
