@@ -18,7 +18,7 @@ public class PowerDownBehavior : MonoBehaviour {
     {
         GameObject.Find("PowerDownSound").GetComponent<AudioSource>().Play();
 
-        Destroy(transform.root.gameObject);
+        Destroy(this.gameObject);
 
         GameObject ball = other.gameObject as GameObject;
         BallBehavior ballScript = ball.GetComponent<BallBehavior>();

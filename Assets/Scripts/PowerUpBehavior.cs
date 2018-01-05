@@ -17,7 +17,7 @@ public class PowerUpBehavior : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         GameObject.Find("PowerUpSound").GetComponent<AudioSource>().Play();
-        Destroy(transform.root.gameObject);
-        GameObject go = Instantiate(Resources.Load("Ball")) as GameObject;
+        Destroy(this.gameObject);
+        Instantiate(Resources.Load("Ball"));
     }
 }

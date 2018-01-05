@@ -22,7 +22,7 @@ public class BlockBehavior : MonoBehaviour {
         particles.transform.position = this.transform.root.position;
         particles.GetComponent<ParticleSystemRenderer>().material = this.GetComponent<Renderer>().material;
 
-        Destroy(transform.root.gameObject);
+        Destroy(this.gameObject);
 
         GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().AddScore(this.value);
     }
