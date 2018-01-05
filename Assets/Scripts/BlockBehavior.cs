@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BlockBehavior : MonoBehaviour {
+
+    public int value = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -23,5 +23,7 @@ public class BlockBehavior : MonoBehaviour {
         particles.GetComponent<ParticleSystemRenderer>().material = this.GetComponent<Renderer>().material;
 
         Destroy(transform.root.gameObject);
+
+        GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().AddScore(this.value);
     }
 }
