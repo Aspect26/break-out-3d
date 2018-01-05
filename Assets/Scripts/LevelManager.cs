@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
 
     private const int MAX_LEVEL = 3;
     private int currentLevel;
+    private int lifes;
     private string[] levelObjectNames;
     private GameObject currentLevelBlocks;
 
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour {
     public void ResetGame()
     {
         this.setLevel(0);
+        this.lifes = 3;
         GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().ResetStats();
     }
 
@@ -35,7 +37,6 @@ public class LevelManager : MonoBehaviour {
     private void setLevel(int level)
     {
         this.currentLevel = level % MAX_LEVEL;
-        Debug.Log(this.currentLevel);
         this.destroyAllBalls();
         this.spawnLevelBlocks();
     }
@@ -70,9 +71,18 @@ public class LevelManager : MonoBehaviour {
         GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
         if (balls.Length == 1)
         {
-            SceneManager.UnloadSceneAsync("Main");
-            SceneManager.LoadScene("Menu");
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
+            this.lifes--;
+            GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().SetLifes(this.lifes);
+            if (this.lifes == 0)
+            {
+                SceneManager.UnloadSceneAsync("Main");
+                SceneManager.LoadScene("Menu");
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("Menu"));
+            }
+            else
+            {
+                Instantiate(Resources.Load("Ball"));
+            }
         }
     }
 

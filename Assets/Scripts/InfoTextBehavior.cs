@@ -7,6 +7,7 @@ public class InfoTextBehavior : MonoBehaviour {
 
     private int score = 0;
     private int level = 1;
+    private int lifes = 3;
 
 	// Use this for initialization
 	void Start () {
@@ -34,12 +35,19 @@ public class InfoTextBehavior : MonoBehaviour {
     {
         this.score = 0;
         this.level = 1;
+        this.lifes = 3;
+        this.updateText();
+    }
+
+    public void SetLifes(int lifes)
+    {
+        this.lifes = lifes;
         this.updateText();
     }
 
     private void updateText()
     {
-        string text = "Score: " + score + "\n" + "Lifes: 3\nLevel: " + level;
+        string text = "Score: " + score + "\n" + "Lifes: " + lifes + "\nLevel: " + level;
         Text textField = GetComponent<Text>();
         textField.text = text;
     }
