@@ -24,6 +24,6 @@ public class BlockBehavior : MonoBehaviour {
 
         Destroy(this.gameObject);
 
-        GameObject.Find("Info Text").GetComponent<InfoTextBehavior>().AddScore(this.value);
+        GameObject.Find("Level Manager").GetComponent<LevelManager>().OnBlockDestroyed(this);
     }
 }

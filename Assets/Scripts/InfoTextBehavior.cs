@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class InfoTextBehavior : MonoBehaviour {
 
     private int score = 0;
+    private int level = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -23,9 +24,15 @@ public class InfoTextBehavior : MonoBehaviour {
         this.updateText();
     }
 
+    public void IncreaseLevel()
+    {
+        this.level++;
+        this.updateText();
+    }
+
     private void updateText()
     {
-        string text = "Score: " + score + "\n" + "Lifes: 3\nLevel: 1";
+        string text = "Score: " + score + "\n" + "Lifes: 3\nLevel: " + level;
         Text textField = GetComponent<Text>();
         textField.text = text;
     }
